@@ -1,0 +1,21 @@
+# pyproject.toml - Modern Python Project Configuration
+# This file defines the build system and project metadata for the Vehicle Insurance ML Ops project.
+# It replaces setup.py for modern Python packaging and includes tool configurations.
+
+# Project metadata section
+[project]
+name = "src"
+version = "0.0.1"
+description = "An MLOps project for Productionizing Models"
+authors = [
+    {name = "Shalin Vachheta", email = "shalinvachheta2016@hotmail.com"},
+]
+dynamic = ["dependencies"]
+
+# Setuptools configuration for package discovery
+[tool.setuptools]
+packages = {find = {}}
+
+# Dynamic dependencies loaded from requirements.txt
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
