@@ -212,6 +212,6 @@ crashcourse.txt # Crash Course files
 
 mongoDB_demo.ipynb
 
-artifacts/
+artifact/
 logs/
 Project Vehicle Insurance Data Pipeline.docx
