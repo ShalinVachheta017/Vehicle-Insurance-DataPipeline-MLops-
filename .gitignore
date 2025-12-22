@@ -211,3 +211,7 @@ __marimo__/
 crashcourse.txt # Crash Course files
 
 mongoDB_demo.ipynb
+
+artifacts/
+logs/
+Project Vehicle Insurance Data Pipeline.docx
