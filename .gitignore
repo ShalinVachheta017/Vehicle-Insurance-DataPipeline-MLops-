@@ -1,3 +1,15 @@
+# AWS Credentials & Sensitive Files
+*accessKeys.csv
+*accessKeys*
+*.pem
+*.key
+.env
+.env.local
+*.credentials
+config/*.json
+secrets/
+src/constants/__init__.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -215,3 +227,6 @@ mongoDB_demo.ipynb
 artifact/
 logs/
 Project Vehicle Insurance Data Pipeline.docx
+constants/
+firstproj_accessKeys.csv
+

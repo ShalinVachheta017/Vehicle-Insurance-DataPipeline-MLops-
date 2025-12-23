@@ -25,7 +25,7 @@ class DataValidation:
             self.data_validation_config = data_validation_config
             self._schema_config = read_yaml_file(file_path=SCHEMA_FILE_PATH)
         except Exception as e:
-            raise MyException(e,sys)
+            raise MyException(e,sys) from e
 
     def validate_number_of_columns(self, dataframe: DataFrame) -> bool:
         """
@@ -40,7 +40,7 @@ class DataValidation:
             logging.info(f"Is required column present: [{status}]")
             return status
         except Exception as e:
-            raise MyException(e, sys)
+            raise MyException(e, sys) from e
 
     def is_column_exist(self, df: DataFrame) -> bool:
         """
@@ -76,9 +76,9 @@ class DataValidation:
     @staticmethod
     def read_data(file_path: str) -> DataFrame:
         try:
-            return pd.read_csv(file_path)
+            return pd.read_csv(file_path )
         except Exception as e:
-            raise MyException(e, sys)
+            raise MyException(e, sys) from e
         
 
     def initiate_data_validation(self) -> DataValidationArtifact:
