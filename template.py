@@ -1,4 +1,10 @@
 # Template for Vehicle Insurance Data Pipeline ML Ops
+"""
+Template script for creating new modules or scripts in the Vehicle Insurance Data Pipeline MLops project.
+"""
+# Author: Shalin Vachheta
+# Date:14/12/2025
+# Template for Vehicle Insurance Data Pipeline ML Ops
 import os
 from pathlib import Path
 

@@ -1,3 +1,6 @@
+"""
+Handles data transformation for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import sys
 import numpy as np
 import pandas as pd

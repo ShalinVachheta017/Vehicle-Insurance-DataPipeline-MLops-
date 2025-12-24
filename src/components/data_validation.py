@@ -1,3 +1,6 @@
+"""
+Performs data validation for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import json
 import sys
 import os

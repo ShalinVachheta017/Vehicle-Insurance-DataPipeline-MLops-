@@ -1,3 +1,6 @@
+"""
+Provides AWS S3 storage utilities for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import boto3
 from src.configuration.aws_connection import S3Client
 from io import StringIO

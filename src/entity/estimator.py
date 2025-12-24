@@ -1,3 +1,6 @@
+"""
+Defines estimator entity classes for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import sys
 
 import pandas as pd

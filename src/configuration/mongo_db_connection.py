@@ -1,3 +1,6 @@
+"""
+Handles MongoDB connection setup for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import os
 import sys
 import pymongo

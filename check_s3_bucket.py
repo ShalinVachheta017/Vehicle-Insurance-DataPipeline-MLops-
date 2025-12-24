@@ -1,5 +1,6 @@
 """Check S3 bucket contents"""
 import boto3
+"""Script to check the status or existence of an S3 bucket for the Vehicle Insurance Data Pipeline MLops project."""
 from src.constants import AWS_ACCESS_KEY_ID_ENV_KEY, AWS_SECRET_ACCESS_KEY_ENV_KEY, MODEL_BUCKET_NAME, REGION_NAME
 
 s3 = boto3.client('s3', 

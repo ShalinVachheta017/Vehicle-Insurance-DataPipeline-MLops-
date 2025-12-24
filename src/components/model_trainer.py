@@ -1,3 +1,6 @@
+"""
+Trains machine learning models for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import sys
 from typing import Tuple
 

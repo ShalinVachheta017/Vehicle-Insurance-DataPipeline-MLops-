@@ -1,6 +1,10 @@
 """
 Quick test to verify AWS credentials are loaded correctly
 """
+# test_aws_connection.py
+"""
+Script to test AWS connection for the Vehicle Insurance Data Pipeline MLops project.
+"""
 from src.constants import AWS_ACCESS_KEY_ID_ENV_KEY, AWS_SECRET_ACCESS_KEY_ENV_KEY, MODEL_BUCKET_NAME, REGION_NAME
 
 print("=" * 60)

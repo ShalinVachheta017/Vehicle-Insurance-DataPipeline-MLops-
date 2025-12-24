@@ -1,4 +1,7 @@
 """
+Initializes the logger package for the Vehicle Insurance Data Pipeline MLops project.
+"""
+"""
 Logger Module for Vehicle Insurance ML Ops Project
 
 This module provides centralized logging configuration for the entire ML Ops pipeline.

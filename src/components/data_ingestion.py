@@ -1,3 +1,6 @@
+"""
+Handles data ingestion for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import os
 import sys
 

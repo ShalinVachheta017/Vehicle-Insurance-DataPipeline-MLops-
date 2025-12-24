@@ -1,3 +1,6 @@
+"""
+Performs model evaluation for the Vehicle Insurance Data Pipeline MLops project.
+"""
 from src.entity.config_entity import ModelEvaluationConfig
 from src.entity.artifact_entity import ModelTrainerArtifact, DataIngestionArtifact, ModelEvaluationArtifact
 from sklearn.metrics import f1_score

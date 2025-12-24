@@ -1,4 +1,7 @@
 """Check S3 bucket object versions"""
+"""
+Script to check versions of objects in an S3 bucket for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import boto3
 from src.constants import AWS_ACCESS_KEY_ID_ENV_KEY, AWS_SECRET_ACCESS_KEY_ENV_KEY, MODEL_BUCKET_NAME, REGION_NAME
 

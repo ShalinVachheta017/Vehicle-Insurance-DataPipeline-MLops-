@@ -1,3 +1,6 @@
+"""
+Pushes trained models to deployment targets for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import sys
 
 from src.cloud_storage.aws_storage import SimpleStorageService

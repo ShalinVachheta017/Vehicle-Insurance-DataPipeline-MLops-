@@ -51,6 +51,8 @@ In this code, allow_origins=["*"] is set, which means allow all origins (any dom
 is added so that your FastAPI app accepts requests from any origin, making it easier for you to access the API from anywhere, 
 such as different frontend apps.
 
+
+
 ------------------------------------------------------------------------------------------------------------------------------------
 
 **Original:** > async
@@ -149,3 +151,48 @@ sudo ./svc.sh start
 ```
 
 After following these steps, the runner should be persistently running as a background service on your EC2 instance and ready to accept jobs.
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+**AWS CORS Example (Simplest Way)**
+
+CORS (Cross-Origin Resource Sharing) in AWS allows your web app to make requests to AWS services (like API Gateway) from different domains.
+
+### Simple Example: Enable CORS in AWS API Gateway
+
+1. **Go to AWS Console**: Open API Gateway.
+
+2. **Select Your API**: Choose the API you created.
+
+3. **Enable CORS**:
+   - In the API Gateway console, select your API.
+   - Go to "Resources" and select a method (e.g., GET).
+   - Click "Enable CORS" button.
+   - In the popup, set:
+     - **Access-Control-Allow-Origin**: * (to allow all origins) or specific domain like https://yourwebsite.com
+     - **Access-Control-Allow-Methods**: GET, POST, OPTIONS (methods you want to allow)
+     - **Access-Control-Allow-Headers**: Content-Type, Authorization (headers to allow)
+   - Click "Enable CORS and replace existing CORS headers".
+
+4. **Deploy the API**:
+   - Go to "Actions" > "Deploy API".
+   - Choose a stage (e.g., prod) and deploy.
+
+5. **Test**:
+   - Your frontend can now call the API from a different domain without CORS errors.
+
+**Why?** Browsers block cross-origin requests for security. AWS API Gateway handles this by adding CORS headers to responses.
+
+**Simple Code Example (Frontend - JavaScript)**:
+```javascript
+fetch('https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/your-endpoint', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+
+This allows your web app to call the AWS API without issues.

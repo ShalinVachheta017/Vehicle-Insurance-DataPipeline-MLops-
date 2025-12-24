@@ -1,3 +1,6 @@
+"""
+Handles training pipeline orchestration for the Vehicle Insurance Data Pipeline MLops project.
+"""
 import sys
 from src.exception import MyException
 from src.logger import logging

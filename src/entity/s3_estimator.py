@@ -1,3 +1,6 @@
+"""
+Defines S3 estimator entity classes for the Vehicle Insurance Data Pipeline MLops project.
+"""
 
 from src.cloud_storage.aws_storage import SimpleStorageService
 from src.exception import MyException

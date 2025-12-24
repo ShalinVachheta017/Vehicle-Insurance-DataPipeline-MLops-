@@ -1,3 +1,6 @@
+"""
+Defines artifact entity classes for the Vehicle Insurance Data Pipeline MLops project.
+"""
 from dataclasses import dataclass
 
 

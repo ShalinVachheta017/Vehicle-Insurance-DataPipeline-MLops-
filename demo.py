@@ -1,3 +1,7 @@
+# demo.py
+"""
+Demo script for testing or demonstrating features in the Vehicle Insurance Data Pipeline MLops project.
+"""
 # from src.logger import logging
 
 # logging.debug("This is a debug message from demo.py")
