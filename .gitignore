@@ -1,14 +1,15 @@
 # AWS Credentials & Sensitive Files
 *accessKeys.csv
 *accessKeys*
+firstproj_accessKeys.csv
 *.pem
 *.key
 .env
 .env.local
+.env.*
 *.credentials
 config/*.json
 secrets/
-src/constants/__init__.py
 
 # Notebooks with credentials
 notebook/mongoDB_demo.ipynb
