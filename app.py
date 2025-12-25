@@ -2,6 +2,8 @@
 Main application entry point for the Vehicle Insurance Data Pipeline MLops project.
 Handles orchestration of the pipeline and serves as the primary script to run the project.
 """
+
+# Set the correct MONGODB_URL in the PowerShell session before starting the app
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
@@ -147,3 +149,10 @@ async def predictRouteClient(request: Request):
 # Main entry point to start the FastAPI server
 if __name__ == "__main__":
     app_run(app, host=APP_HOST, port=APP_PORT)
+    
+'''Use test dataset to see our model prediction result on web page is correct or not.
+
+test dataset can be found in this path:
+
+artifacts/data_ingestion/../test.csv
+'''

@@ -51,7 +51,7 @@ In this code, allow_origins=["*"] is set, which means allow all origins (any dom
 is added so that your FastAPI app accepts requests from any origin, making it easier for you to access the API from anywhere, 
 such as different frontend apps.
 
-
+# app.py's  line 25  to 35 make us to connect the server to api from any  port or get working url from anywhere or browser
 
 ------------------------------------------------------------------------------------------------------------------------------------
 

@@ -96,27 +96,27 @@
       * Add code to src.configuration.aws_connection.py file (To work with AWS S3 service)
       * Ensure below info in constants.__init__.py file:
             MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = 0.02
-            MODEL_BUCKET_NAME = "my-model-mlopsproj"
+            MODEL_BUCKET_NAME = "my-model-mlopsproj" /'vehicle-insurance-mlops-ytproject' /name something unique
             MODEL_PUSHER_S3_KEY = "model-registry"
       * Go to S3 service >> Create bucket >> Region: us-east-1 >> General purpose >>
         Bucket Name: "my-model-mlopsproj" >> uncheck: "Block all public access" and acknowledge >>
         Hit Create Bucket
-      * Now inside "src.aws_storage" code needs to be added for the configurations needed to pull 
+      * Now inside "src.could storage.aws_storage" code needs to be added for the configurations needed to pull 
         and push model from AWS S3 bucket. 
       * Inside "entity" dir we will have an "s3_estimator.py" file containing all the func to pull/push
         data from s3 bucket.
 
-24. Now we will start our work on "Model Evaluation" and "Model Pusher" component.
+24. Now we will start our work on "Model Evaluation" and "Model Pusher" component.(see workfloww)
 
 25. Create the code structure of "Prediction Pipeline" and setup your app.py
-26. Add "static" and "template" dir to the project.
+26. Add "static" and "template" dir to the project.(for FASTAPI frontend)
 
 27. Getting started with CI-CD process:
       * Setup the dockerfile and .dockerignore file
       * Setup the .github\workflows dir and aws.yaml file within
       * Go to AWS console and create a new IAM user exactly the way we did earlier (name: "usvisa-user") >>
         Go inside user >> Security Credentials >> Access Keys >> create access key >> CLI >> check agreement
-        >> next >> create access key >> download csv
+        >> next >> create access key >> download csv (ALREADY MADE I AM USER)
       * Now create one ECR repo to store/save docker image:
         AWS console >> Go to ECR >> Region: us-east-1 >> Hit create repository >>
         repo name: vehicleproj >> hit create repository >> copy and keep uri
