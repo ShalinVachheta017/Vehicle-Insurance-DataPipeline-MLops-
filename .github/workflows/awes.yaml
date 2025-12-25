@@ -1,0 +1,84 @@
+# GitHub Actions Workflow for CI/CD Pipeline
+# This workflow automates the build, test, and deployment of the Vehicle Insurance Data Pipeline ML Ops application.
+# It uses Docker for containerization and deploys to an EC2 instance via Amazon ECR.
+
+# Workflow name displayed in GitHub Actions UI
+name: Deploy Application Docker Image to EC2 instance
+
+# Triggers for the workflow: runs on push to main branch
+on:
+  push:
+    branches: [main]
+
+# Define jobs for the workflow
+jobs:
+  # Continuous Integration job: builds and pushes Docker image to ECR 
+  Continuous-Integration:
+    # Runs on GitHub's Ubuntu latest runner
+    runs-on: ubuntu-latest
+    # ubuntu-latest provides a clean environment with Docker pre-installed 
+
+    # Steps for the CI job
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout
+        uses: actions/checkout@v2 # Checks out the code from the repository
+
+      # Step 2: Configure AWS credentials for accessing AWS services
+      # Uses AWS credentials stored as GitHub secrets
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      # Step 3: Login to Amazon Elastic Container Registry (ECR)
+      # This allows pushing Docker images to ECR
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Step 4: Build, tag, and push the Docker image to ECR
+      # Builds the image from the Dockerfile in the root, tags it as 'latest', and pushes to ECR
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPO }}
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .  
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+  # Continuous Deployment job: deploys the built image to EC2
+  # Depends on CI job completing successfully
+  Continuous-Deployment:
+    needs: Continuous-Integration #CI must be successful before CD starts
+    # Runs on a self-hosted runner (likely on EC2)
+    runs-on: self-hosted
+    steps:
+      # Step 1: Checkout the repository code on the deployment runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Step 2: Configure AWS credentials for the deployment environment
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      # Step 3: Login to Amazon ECR on the deployment runner
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Step 4: Run the Docker image to serve the application
+      # Pulls the latest image from ECR and runs it in detached mode with necessary environment variables
+      # Maps port 5000 on the host to port 5000 in the container
+      - name: Run Docker Image to serve users
+        run: |
+         docker run -d -e AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" -e AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" -e AWS_DEFAULT_REGION="${{ secrets.AWS_DEFAULT_REGION }}" -e MONGODB_URL="${{ secrets.MONGODB_URL }}" -p 5000:5000 "${{ steps.login-ecr.outputs.registry }}"/"${{ secrets.ECR_REPO }}":latest
