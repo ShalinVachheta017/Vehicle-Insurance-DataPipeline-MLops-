@@ -15,7 +15,10 @@ from uvicorn import run as app_run
 from typing import Optional
 
 # Importing constants and pipeline modules from the project
-from src.constants import APP_HOST, APP_PORT
+# from src.constants import APP_HOST, APP_PORT
+import os
+APP_HOST = os.getenv("APP_HOST", "0.0.0.0")
+APP_PORT = int(os.getenv("APP_PORT", "5000"))
 from src.pipline.prediction_pipeline import VehicleData, VehicleDataClassifier
 from src.pipline.training_pipeline import TrainPipeline
 
