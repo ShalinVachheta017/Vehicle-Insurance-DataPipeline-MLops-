@@ -48,23 +48,23 @@ FILE_NAME: str = "data.csv"
 TRAIN_FILE_NAME: str = "train.csv"
 TEST_FILE_NAME: str = "test.csv"
 SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")
-
 # -----------------------------------------------------------------------------
-# 4) AWS constants (VERY IMPORTANT FIX)
+# 4) AWS credentials (IMPORTANT: keep *_ENV_KEY as the ENV VAR NAME, not value)
 # -----------------------------------------------------------------------------
-# Your app error says: "AWS Access Key ID is not set in constants."
-# That happens because your pipeline likely imports `AWS_ACCESS_KEY_ID`
-# but you defined `AWS_ACCESS_KEY_ID_ENV_KEY`.
-#
-# ✅ Permanent fix: expose the exact names commonly used by boto3 code.
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
-AWS_DEFAULT_REGION = os.getenv("AWS_DEFAULT_REGION", "us-east-1")
 
-# Keep old variable names as aliases so you don't break older code.
-AWS_ACCESS_KEY_ID_ENV_KEY = AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY_ENV_KEY = AWS_SECRET_ACCESS_KEY
+# These are the environment variable NAMES (keys)
+AWS_ACCESS_KEY_ID_ENV_KEY = "AWS_ACCESS_KEY_ID"
+AWS_SECRET_ACCESS_KEY_ENV_KEY = "AWS_SECRET_ACCESS_KEY"
+AWS_DEFAULT_REGION_ENV_KEY = "AWS_DEFAULT_REGION"
+
+# These are the actual values read from environment at runtime
+AWS_ACCESS_KEY_ID = os.getenv(AWS_ACCESS_KEY_ID_ENV_KEY, "")
+AWS_SECRET_ACCESS_KEY = os.getenv(AWS_SECRET_ACCESS_KEY_ENV_KEY, "")
+AWS_DEFAULT_REGION = os.getenv(AWS_DEFAULT_REGION_ENV_KEY, "us-east-1")
+
+# Backward compatible aliases (if your old code uses REGION_NAME)
 REGION_NAME = AWS_DEFAULT_REGION
+
 
 # -----------------------------------------------------------------------------
 # 5) Data ingestion constants
