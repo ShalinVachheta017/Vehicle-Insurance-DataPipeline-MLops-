@@ -27,10 +27,10 @@ DATABASE_NAME = "Vehicle-Insurance"
 COLLECTION_NAME = "Vehicle-Insurance-Data"
 
 # IMPORTANT:
-# Previously you used `MONGODB_URL_KEY`. Keep it for backward compatibility,
-# but also expose `MONGODB_URL` because code often expects that exact name.
-MONGODB_URL = os.getenv("MONGODB_URL", "")
-MONGODB_URL_KEY = MONGODB_URL  # backward compatible alias
+# MONGODB_URL_KEY is the ENV VAR NAME (a string), not the value.
+# MONGODB_URL is the actual connection string value read from the environment.
+MONGODB_URL_KEY = "MONGODB_URL"  # The environment variable name (string)
+MONGODB_URL = os.getenv(MONGODB_URL_KEY, "")  # The actual value
 
 # -----------------------------------------------------------------------------
 # 3) Artifact / pipeline constants

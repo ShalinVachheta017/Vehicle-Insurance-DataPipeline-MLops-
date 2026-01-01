@@ -3,11 +3,11 @@
 Script to check versions of objects in an S3 bucket for the Vehicle Insurance Data Pipeline MLops project.
 """
 import boto3
-from src.constants import AWS_ACCESS_KEY_ID_ENV_KEY, AWS_SECRET_ACCESS_KEY_ENV_KEY, MODEL_BUCKET_NAME, REGION_NAME
+from src.constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, MODEL_BUCKET_NAME, REGION_NAME
 
 s3 = boto3.client('s3', 
-                  aws_access_key_id=AWS_ACCESS_KEY_ID_ENV_KEY,
-                  aws_secret_access_key=AWS_SECRET_ACCESS_KEY_ENV_KEY,
+                  aws_access_key_id=AWS_ACCESS_KEY_ID,
+                  aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
                   region_name=REGION_NAME)
 
 print("=" * 70)

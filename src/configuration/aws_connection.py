@@ -1,21 +1,26 @@
 import boto3
 import os
-from src.constants import AWS_SECRET_ACCESS_KEY_ENV_KEY, AWS_ACCESS_KEY_ID_ENV_KEY, REGION_NAME
+from src.constants import (
+    AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY,
+    REGION_NAME
+)
 
 
 class S3Client:
 
-    s3_client=None
+    s3_client = None
     s3_resource = None
+
     def __init__(self, region_name=REGION_NAME):
         """ 
         This Class gets aws credentials from constants and creates a connection with s3 bucket 
         """
 
-        if S3Client.s3_resource==None or S3Client.s3_client==None:
-            # Use credentials directly from constants
-            __access_key_id = AWS_ACCESS_KEY_ID_ENV_KEY
-            __secret_access_key = AWS_SECRET_ACCESS_KEY_ENV_KEY
+        if S3Client.s3_resource is None or S3Client.s3_client is None:
+            # Use actual credential values from environment (loaded in constants)
+            __access_key_id = AWS_ACCESS_KEY_ID
+            __secret_access_key = AWS_SECRET_ACCESS_KEY
             if not __access_key_id:
                 raise Exception("AWS Access Key ID is not set in constants.")
             if not __secret_access_key:
