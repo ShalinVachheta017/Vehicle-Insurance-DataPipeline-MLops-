@@ -50,6 +50,14 @@ If you want the detailed build-notes / step-by-step project journey:
 
 ## 🏗️ Architecture
 
+### MLOps Tech Stack Overview
+
+![MLOps Tech Stack](docs/mlops-tech-stack.png)
+
+### Project Repository Structure
+
+![Project Anatomy](docs/project-anatomy.png)
+
 ### Data + model flow
 
 ```mermaid
