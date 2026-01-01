@@ -4,7 +4,7 @@ numpy
 matplotlib
 plotly
 seaborn
-scikit-learn>=1.7.0
+scikit-learn==1.7.2
 pymongo
 from_root
 dill

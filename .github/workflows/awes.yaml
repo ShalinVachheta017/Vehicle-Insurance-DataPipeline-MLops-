@@ -157,17 +157,18 @@ jobs:
           # Remove the stopped containers
           docker ps -aq --filter "name=vehicleproj" | xargs -r docker rm
 
-      # Step 5: Image Pull
-      # Explicitly pulls the latest image from ECR
-      # Ensures the deployment server has the most recent version
-      # More reliable than relying on 'docker run' to pull automatically
-      - name: Pull latest image
+      # Step 5: Image Cleanup and Pull
+      # Removes old cached images to ensure fresh pull
+      # Then pulls the latest image from ECR
+      - name: Pull latest image (force fresh)
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPO }}
           IMAGE_TAG: latest
         run: |
-          # Pull the Docker image from ECR to local cache
+          # Remove old cached image to force fresh download
+          docker rmi $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG || true
+          # Pull the fresh Docker image from ECR
           docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       # Step 6: Application Deployment
