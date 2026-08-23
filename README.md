@@ -9,8 +9,6 @@
 
 An end-to-end **MLOps project** that builds a production-ready pipeline for **vehicle insurance response prediction** — from data ingestion (MongoDB) to training/evaluation, model versioning (S3), and deployment (Docker + GitHub Actions + AWS EC2).
 
-> Recruiter-friendly goal: if you skim only this README, you should still understand **what the project does**, **how it’s built**, and **how to run it**.
-
 ---
 
 ## 🔎 What’s inside (high level)
